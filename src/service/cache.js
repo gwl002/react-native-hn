@@ -56,3 +56,5 @@ function hasExpired(timestamp,expireTime){
 		return false;
 	}
 }
+
+export default new Cache();

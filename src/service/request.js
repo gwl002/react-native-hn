@@ -1,17 +1,36 @@
 import axios from "./baseConfig.js";
 import api from "../api";
+import Cache from "./cache.js";
 
 function checkStatus(response){
 
 }
 
-async function request(url){
-	return axios.get(url).then(response => return response.data);
+export async function request(url){
+	if(Cache.has(url)){
+		return Promise.resolve(Cache.get(url));
+	}else{
+		try{
+			let response = await axios.get(url);
+			Cache.set(url,response.data);
+			return response.data;
+		}catch(err){
+			throw err;
+		}
+		
+	}
+	
 }
 
-function fetchItem(id){
-	let url = api.item(id);
-	return request(url);
+export function fetchItem(id){
+	return request("/item/" + id);
 }
 
 
+export function fetchUser(id){
+	return request("/user/" + id);
+}
+
+export function fetchIdsByType(type){
+	return request(`${type}/stories`);
+}
