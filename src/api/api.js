@@ -1,6 +1,6 @@
 export default {
 	top: "/topstories.json",
-	new: "/updates.json",
+	new: "/newstories.json",
 	ask: "/askstories.json",
 	show: "/showstories.json",
 	job: "jobstories.json",

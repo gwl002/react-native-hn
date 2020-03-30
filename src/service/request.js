@@ -1,7 +1,6 @@
 import axios from "./baseConfig.js";
 import api from "../api";
 
-
 function checkStatus(response){
 
 }
