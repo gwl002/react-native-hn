@@ -27,6 +27,7 @@ import {
 } from '@eva-design/eva';
 
 import Router from "./src/router";
+import Loading from "./src/components/Loading";
 
 /**
  * Use any valid `name` property from eva icons (e.g `github`, or `heart-outline`)
@@ -39,6 +40,7 @@ const App = () => (
     <ApplicationProvider mapping={mapping} theme={theme}>
       <Router />
     </ApplicationProvider>
+    <Loading />
   </>
 );
 

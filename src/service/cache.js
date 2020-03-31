@@ -1,6 +1,7 @@
 class Cache{
 	constructor(props) {
-		this.init();
+		let config = props.config || {};
+		this.init(config);
 	}
 
 	init(config){ 
@@ -57,4 +58,4 @@ function hasExpired(timestamp,expireTime){
 	}
 }
 
-export default new Cache();
+export default new Cache({});

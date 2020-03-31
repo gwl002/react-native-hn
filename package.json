@@ -18,6 +18,7 @@
     "@ui-kitten/eva-icons": "4.4.1",
     "axios": "^0.19.2",
     "dva-core": "^2.0.2",
+    "dva-loading": "^3.0.20",
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-native": "0.61.5",
@@ -27,7 +28,8 @@
     "react-native-screens": "^2.4.0",
     "react-native-svg": "^9.13.3",
     "react-redux": "^7.2.0",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

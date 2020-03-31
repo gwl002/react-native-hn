@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
+import { connect } from "react-redux";
 import {
   Button,
   Icon,
@@ -9,30 +10,7 @@ import {
 import PropTypes from 'prop-types';
 import TopBar from "../components/TopBar";
 import Pagination from "../components/Pagination";
-import Story from "../components/Story";
-
-const items = [
-	{
-		text: "Top",
-		id: "1"
-	},
-	{
-		text: "New",
-		id: "2"
-	},
-	{
-		text: "Show",
-		id: "3"
-	},
-	{
-		text: "Ask",
-		id: "4"
-	},
-	{
-		text: "Job",
-		id: "5"
-	}
-]
+import StoriesList from "../components/StoriesList";
 
 const item = {
 	"by" : "dhouston",
@@ -46,21 +24,58 @@ const item = {
 	"url" : "http://www.getdropbox.com/u/2/screencast.html"
 }
 
-export default function HomeScreen(props){
+function HomeScreen(props){
+	let { activeType, currentPage, totalPage, items, dispatch } = props;
+
+	const changeType = (type) => {
+		dispatch({ type : "item/saveType", payload: type});
+		dispatch({ type : "item/changePage", payload: 1});
+		dispatch({ type : "item/fetchList", payload: { type:type, page: 1} })
+	}
+
+	const changePage = (page) => {
+		dispatch({ type: "item/changePage", payload: page});
+		dispatch({ type : "item/fetchList", payload: { type:activeType, page: page} })
+	}
+
+	useEffect(() => {
+	    changeType(activeType);
+	},[]);
+
 	return (
-		<Layout style={{flex:1}}>
+		<Layout style={{flex:1,backgroundColor:"#f2f3f5"}}>
 			<TopBar 
-				onPressed={()=>{
-					console.log("xxxx")
-				}}
-				items={items}
+				onPressed={changeType}
+				activeType={activeType}
 			/>
 			<Pagination 
-				totalPage={100}
+				totalPage={totalPage}
+				currentPage={currentPage}
+				onPressed={changePage}
 			/>
-			<Layout>
-				<Story item={item} />
-			</Layout>
+			<StoriesList items={items} />
 		</Layout>
 	)
 }
+
+function mapStateToProps(state){
+	let { activeType, itemsById, currentPage, list, itemsPerPage } = state.item;
+	let ids = list[activeType].slice(itemsPerPage * (currentPage - 1),itemsPerPage * currentPage);
+	let items = ids.reduce(( _memo, id) =>{
+		let memo = _memo;
+		if(itemsById[id]) memo.push(itemsById[id]);
+		return memo;
+	},[]);
+	let totalPage = Math.ceil(list[activeType].length/itemsPerPage);
+	return {
+		activeType,
+		currentPage,
+		totalPage,
+		items
+	}
+}
+
+export default connect(mapStateToProps)(HomeScreen);
+
+
+

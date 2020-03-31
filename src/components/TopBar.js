@@ -8,28 +8,48 @@ import {
 } from '@ui-kitten/components';
 import PropTypes from 'prop-types';
 
+const TabItems = [
+	{
+		text: "Top",
+		id: "top"
+	},
+	{
+		text: "New",
+		id: "new"
+	},
+	{
+		text: "Show",
+		id: "show"
+	},
+	{
+		text: "Ask",
+		id: "ask"
+	},
+	{
+		text: "Job",
+		id: "job"
+	}
+]
 
 const LogoIcon = (style) => <Icon name="globe-outline" fill={"white"} width={30} height={30} style={{marginLeft:10,marginRight:5}}/>
 
 const Indicator = () => <View style={styles.indicator}></View>
 
 export default function TopBar(props){
-	const [selectedIndex, setSelectedIndex] = React.useState(0);
+	let { activeType, onPressed } = props;
 
 	const onSelect = (index) => {
-		setSelectedIndex(index);
-		let item = props.items[index];
+		let item = TabItems[index];
 		props.onPressed(item.id);
   	};
-
 
 	return (
 		<SafeAreaView style={styles.header}>
 			<View style={styles.topbar}>
 				<LogoIcon />
 				{
-					props.items.map((item,index) => {
-						let isActive = selectedIndex === index;
+					TabItems.map((item,index) => {
+						let isActive = activeType === item.id;
 						return (
 							<View key={item.id}>
 								<Button 
@@ -52,10 +72,7 @@ export default function TopBar(props){
 }
 
 TopBar.propTypes = {
-	items: PropTypes.arrayOf(PropTypes.shape({
-		text: PropTypes.string,
-		id: PropTypes.string
-	})),
+	activeType: PropTypes.string,
 	onPressed: PropTypes.func,
 }
 

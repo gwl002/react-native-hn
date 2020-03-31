@@ -10,8 +10,7 @@ import PropTypes from 'prop-types';
 
 import  { host, timeAgo } from "../utils";
 
-
-export default function Story(props){
+function Story(props){
 	let { item, navigateToUrl, navigateToUser, navigateToItem } = props;
 	return (
 		<Layout style={styles.item}>
@@ -130,3 +129,5 @@ const styles = StyleSheet.create({
 		color:"#828282"
 	}
 });
+
+export default React.memo(Story);

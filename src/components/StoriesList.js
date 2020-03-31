@@ -5,23 +5,28 @@ import {
   Icon,
   Layout,
   Text,
+  List,
 } from '@ui-kitten/components';
 import PropTypes from 'prop-types';
+import Story from "./Story";
 
 
 export default function StoriesList(props){
-	const [current,setCurrent] = React.useState(1);
-
+	const { items } = props;
+	const renderItem = ({ item, index}) => (
+		<Story item={item} />
+	)
 
 	return (
-		<View style={styles.pagination}>
-			
-		</View>
+		<List 
+			data = {items}
+			renderItem = {renderItem}
+		/>
 	)
 }
 
 StoriesList.propTypes = {
-	
+	items: PropTypes.array,
 }
 
 const styles = StyleSheet.create({

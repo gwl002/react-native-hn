@@ -16,21 +16,21 @@ const Colors = {
 
 
 export default function Pagination(props){
-	const [current,setCurrent] = React.useState(1);
+	let { currentPage, totalPage } = props;
 
-	const hasPrev = () => current > 1;
-	const hasNext = () => current < props.totalPage ;
+	const hasPrev = () => currentPage > 1;
+	const hasNext = () => currentPage < totalPage ;
 
 	const prePage = () => {
 		if(hasPrev()){
-			setCurrent(current-1);
+			props.onPressed(currentPage - 1);
 		}
 		
 	}
 
 	const nextPage = () => {
 		if(hasNext()){
-			setCurrent(current+1);
+			props.onPressed(currentPage + 1);
 		}
 	}
 
@@ -48,7 +48,7 @@ export default function Pagination(props){
 				/>
 				<Text style={[styles.text,{color:hasPrev()?Colors.normal:Colors.disabled}]}>prev</Text>
 			</TouchableOpacity>
-			<Text style={[styles.text,styles.middle]}>{`${current}/${props.totalPage}`}</Text>
+			<Text style={[styles.text,styles.middle]}>{`${currentPage}/${totalPage}`}</Text>
 			<TouchableOpacity 
 				style={styles.btn}
 				onPress={nextPage}
@@ -68,6 +68,7 @@ export default function Pagination(props){
 
 Pagination.propTypes = {
 	totalPage: PropTypes.number,
+	currentPage: PropTypes.number,
 	onPressed: PropTypes.func,
 }
 
@@ -78,6 +79,7 @@ const styles = StyleSheet.create({
 		alignItems:"center",
 		flexDirection:"row",
 		height:48,
+		marginBottom:10,
 		...Platform.select({
 			ios:{
 				shadowOffset:{
