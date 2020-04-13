@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from "./screens/HomeScreen";
+import WebviewScreen from "./screens/WebviewScreen";
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ function App() {
       	headerMode="none"
       >
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Webview" component={WebviewScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

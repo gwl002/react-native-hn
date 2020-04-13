@@ -7,11 +7,26 @@ import {
   Text,
 } from '@ui-kitten/components';
 import PropTypes from 'prop-types';
+import { withNavigation } from '@react-navigation/compat';
 
 import  { host, timeAgo } from "../utils";
 
+
 function Story(props){
-	let { item, navigateToUrl, navigateToUser, navigateToItem } = props;
+	let { item, navigation } = props;
+
+	const navigateToUrl = (uri) => {
+		navigation.navigate("Webview",{uri:uri})
+	}
+
+	const navigateToUser = () => {
+
+	}
+
+	const navigateToItem = () => {
+
+	}
+
 	return (
 		<Layout style={styles.item}>
 			<Text style={styles.score}>{item.score}</Text>
@@ -85,9 +100,9 @@ Story.propTypes = {
 		time: PropTypes.number,
 		descendants: PropTypes.number
 	}),
-	navigateToItem: PropTypes.func,
-	navigateToUser: PropTypes.func,
-	navigateToUrl: PropTypes.func.isRequired
+	// navigateToItem: PropTypes.func,
+	// navigateToUser: PropTypes.func,
+	// navigateToUrl: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
@@ -130,4 +145,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default React.memo(Story);
+export default withNavigation(React.memo(Story));

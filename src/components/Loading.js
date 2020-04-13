@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 
 
-const Loading = (props) => {
+export const Loading = (props) => {
     let { loading } = props;
     if(!loading) return null;
     return (
