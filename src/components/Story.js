@@ -19,12 +19,12 @@ function Story(props){
 		navigation.navigate("Webview",{uri:uri})
 	}
 
-	const navigateToUser = () => {
-
+	const navigateToUser = (user) => {
+		navigation.navigate("User",{user:user})
 	}
 
 	const navigateToItem = () => {
-
+		navigation.navigate("Comment",{})
 	}
 
 	return (
@@ -54,7 +54,7 @@ function Story(props){
 								<Text 
 									style={styles.link}
 									onPress={()=>{
-										navigateToUser(item.by)
+										navigateToUser(item.by);
 									}}
 								> 
 									{" " + item.by}
