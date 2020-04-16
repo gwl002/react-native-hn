@@ -51,7 +51,7 @@ export default {
 			yield put({ type: "saveList", payload: { ids, type } });
 			yield put({ type: "saveItems", payload: items });
 		},
-		*fetchComments( { payload: id }, { put, call }){
+		*fetchComments( { payload: id }, { put, call, all }){
 			let item = yield call(fetchItem, id);
 			yield put({ type:"saveItems", payload:[item] });
 
@@ -61,7 +61,7 @@ export default {
 				yield put({ type: "saveItems", payload: items });
 				ids = items.reduce((_memo, item) => {
 					let memo = _memo;
-					if(items.kids){
+					if(item.kids){
 						memo = [...memo, ...item.kids];
 					}
 					return memo;

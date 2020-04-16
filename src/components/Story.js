@@ -23,8 +23,8 @@ function Story(props){
 		navigation.navigate("User",{user:user})
 	}
 
-	const navigateToItem = () => {
-		navigation.navigate("Comment",{})
+	const navigateToItem = (id) => {
+		navigation.navigate("Comment",{id:id})
 	}
 
 	return (
