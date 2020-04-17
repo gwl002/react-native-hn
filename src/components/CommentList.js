@@ -1,55 +1,67 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, View, TouchableOpacity, Platform, ScrollView } from 'react-native';
 import {
-  Button,
-  Icon,
-  Layout,
-  Text,
-} from '@ui-kitten/components';
+	StyleSheet,
+	SafeAreaView,
+	View,
+	TouchableOpacity,
+	Platform,
+	ScrollView,
+} from 'react-native';
+import { Button, Icon, Layout, Text } from '@ui-kitten/components';
 import PropTypes from 'prop-types';
 import { withNavigation } from '@react-navigation/compat';
 import HTMLView from 'react-native-htmlview';
+import TreeView from 'react-native-final-tree-view';
 
-import  { host, timeAgo } from "../utils";
+import { host, timeAgo } from '../utils';
 
-
-function Comment(props){
+function Comment(props) {
 	let { comment } = props;
-	if(!comment) return null;
+	if (!comment) return null;
 	return (
 		<Layout style={styles.user}>
 			<Text>{comment.by}:</Text>
-			<HTMLView value={comment.text} style={{paddingLeft:14}}/>
+			<HTMLView value={comment.text} style={{ paddingLeft: 14 }} />
 		</Layout>
-	)
+	);
 }
 
-Comment.propTypes = {
+Comment.propTypes = {};
 
-}
-
-
-function CommentList(props){
+function CommentList(props) {
 	let { comments, story } = props;
 	return (
-		<ScrollView>
-			{comments.map((comment,index) => {
-				return (
-					<Comment comment={comment} key={index} />
-				)
-			})}
+		<ScrollView style={{backgroundColor:"#fff"}}>
+			<TreeView
+				data={comments}
+				childrenKey="kids"
+				initialExpanded={true}
+				renderNode={({ node, level, isExpanded, hasChildrenNodes }) => {
+					return (
+						<View style={{ paddingLeft: 12*level }}>
+							<Comment comment={node} />
+						</View>
+					);
+				}}
+				onNodePress={({ node, level }) => {
+					console.log(node);
+					if(level === 0 ){
+						return false
+					}else{
+						return true
+					}
+				}}
+			/>
 		</ScrollView>
-	)
+	);
 }
 
-CommentList.propTypes = {
-
-}
+CommentList.propTypes = {};
 
 const styles = StyleSheet.create({
-	user:{
-		paddingHorizontal:40,
-		paddingVertical:15
+	user: {
+		paddingHorizontal: 40,
+		paddingVertical: 15,
 	},
 });
 
