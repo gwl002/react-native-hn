@@ -17,7 +17,7 @@ import { host, timeAgo } from '../utils';
 
 function Comment(props) {
 	let { comment } = props;
-	if (!comment) return null;
+	// if (!comment) return null;
 	return (
 		<Layout style={styles.user}>
 			<Text>{comment.by}:</Text>
@@ -44,7 +44,6 @@ function CommentList(props) {
 					);
 				}}
 				onNodePress={({ node, level }) => {
-					console.log(node);
 					if(level === 0 ){
 						return false
 					}else{

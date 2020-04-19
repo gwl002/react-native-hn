@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import TopBar from "../components/TopBar";
 import User from "../components/User";
 
+
 function UserScreen(props){
 	let { user, dispatch } = props;
 	let id = props.route.params.user;
@@ -19,8 +20,10 @@ function UserScreen(props){
 		dispatch({ type: "user/fetchUser", payload: { id: id }  })
 	},[props.route.params.user]);
 
+
 	return (
 		<Layout style={{flex:1,backgroundColor:"#f2f3f5"}}>
+			<TopBar />
 			{user ? <User user={user} /> : null}
 		</Layout>
 	)

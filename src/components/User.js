@@ -14,7 +14,6 @@ import  { host, timeAgo } from "../utils";
 
 function User(props){
 	let { user, navigation } = props;
-	console.warn(user);
 
 	return (
 		<Layout style={styles.user}>

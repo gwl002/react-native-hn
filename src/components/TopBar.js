@@ -8,6 +8,9 @@ import {
 } from '@ui-kitten/components';
 import PropTypes from 'prop-types';
 
+import { connect } from "react-redux";
+import { useNavigation } from '@react-navigation/native';
+
 const TabItems = [
 	{
 		text: "Top",
@@ -35,12 +38,14 @@ const LogoIcon = (style) => <Icon name="globe-outline" fill={"white"} width={30}
 
 const Indicator = () => <View style={styles.indicator}></View>
 
-export default function TopBar(props){
+function TopBar(props){
+	const navigation = useNavigation();
 	let { activeType, onPressed } = props;
 
 	const onSelect = (index) => {
 		let item = TabItems[index];
 		props.onPressed(item.id);
+		navigation.navigate("Home");
   	};
 
 	return (
@@ -104,3 +109,20 @@ const styles = StyleSheet.create({
 		width:"100%"
 	}
 });
+
+const mapStateToProps = (state) => {
+	return {
+		activeType: state.item.activeType
+	}
+}
+
+const mapDispatchToProps = (dispatch,props) => {
+	console.customLog("---ownProps---",props);
+	return {
+		onPressed: (type) => {
+			dispatch({ type: 'item/gotoType', payload: type });
+		}
+	}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(TopBar);
