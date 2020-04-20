@@ -26,8 +26,8 @@ import {
   light as theme,
 } from '@eva-design/eva';
 
-import Router from "./src/router";
-import Loading from "./src/components/Loading";
+import Router from "./router";
+import Loading from "./components/Loading";
 
 /**
  * Use any valid `name` property from eva icons (e.g `github`, or `heart-outline`)

@@ -3,7 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import App from './dva';
+import App from 'core/src/index';;
 import {name as appName} from './app.json';
 
 

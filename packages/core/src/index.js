@@ -2,8 +2,8 @@ import { create } from "dva-core";
 import React from "react";
 import {Provider} from "react-redux";
 import App from "./App";
-import UserModel from "./src/models/user";
-import ItemModel from "./src/models/item";
+import UserModel from "./models/user";
+import ItemModel from "./models/item";
 import { createLogger } from 'redux-logger';
 import createLoading from 'dva-loading';
 
