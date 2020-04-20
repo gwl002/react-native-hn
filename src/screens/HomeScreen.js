@@ -61,7 +61,7 @@ function HomeScreen(props) {
 		items,
 		dispatch,
 		navigation,
-		route
+		route,
 	} = props;
 
 	const changeType = type => {
