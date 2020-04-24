@@ -8,7 +8,7 @@ import Story from "./Story";
 export default function StoriesList(props){
 	const { items } = props;
 	const renderItem = ({ item, index}) => (
-		<Story item={item} />
+		<Story item={item} key={item.id} />
 	)
 
 	return (

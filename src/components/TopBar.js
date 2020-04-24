@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, SafeAreaView, View, Text, TouchableOpacity, Image } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { connect } from "react-redux";
@@ -29,6 +29,11 @@ const TabItems = [
 ]
 
 // const LogoIcon = (style) => <Icon name="globe-outline" fill={"white"} width={30} height={30} style={{marginLeft:10,marginRight:5}}/>
+const LogoIcon = () => {
+	return (
+		<Image source={require("../images/react_logo.png")} style={styles.logo} />
+	)
+}
 
 const Indicator = () => <View style={styles.indicator}></View>
 
@@ -45,7 +50,7 @@ function TopBar(props){
 	return (
 		<SafeAreaView style={styles.header}>
 			<View style={styles.topbar}>
-				{/*<LogoIcon />*/}
+				<LogoIcon />
 				{
 					TabItems.map((item,index) => {
 						let isActive = activeType === item.id;
@@ -75,6 +80,12 @@ TopBar.propTypes = {
 }
 
 const styles = StyleSheet.create({
+	logo:{
+		width:30,
+		height:30,
+		marginRight:5,
+		marginLeft:10
+	},
 	header:{
 		// backgroundColor: "#20232a"
 	},
@@ -95,7 +106,7 @@ const styles = StyleSheet.create({
 		height:53,
 		alignItems:"center",
 		justifyContent:"center",
-		width:50
+		width:60
 	},
 	indicator:{
 		height:2,

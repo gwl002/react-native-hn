@@ -40,7 +40,7 @@ export default function Pagination(props){
 					width="30" height="30" 
 					fill={hasPrev()?Colors.normal:Colors.disabled} 
 				/>*/}
-				<Text style={[styles.text,{color:hasPrev()?Colors.normal:Colors.disabled}]}>prev</Text>
+				<Text style={[styles.text,{color:hasPrev()?Colors.normal:Colors.disabled}]}>{'<'} prev</Text>
 			</TouchableOpacity>
 			<Text style={[styles.text,styles.middle]}>{`${currentPage}/${totalPage}`}</Text>
 			<TouchableOpacity 
@@ -48,7 +48,7 @@ export default function Pagination(props){
 				onPress={nextPage}
 				disabled={!hasNext()}
 			>
-				<Text style={[styles.text,{color:hasNext()?Colors.normal:Colors.disabled}]}>more</Text>
+				<Text style={[styles.text,{color:hasNext()?Colors.normal:Colors.disabled}]}>more {'>'}</Text>
 				{/*<Icon 
 					name="chevron-right-outline" 
 					width="30" 
